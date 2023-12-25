@@ -1,5 +1,5 @@
 
-# 🚀 FromSQLBasicsToPro-MySQL 🚀
+# 🚀 FromSQLBasicsToPro-MySQL 
 
 Welcome to **FromSQLBasicsToPro-MySQL**, where your journey from SQL novice to MySQL pro begins!
 
