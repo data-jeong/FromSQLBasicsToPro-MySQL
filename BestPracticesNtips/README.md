@@ -1,18 +1,19 @@
-# Best Practices & Tips
+# 최고의 실천 방법 & 팁
 
-## Efficient Database Design Principles
-- Understanding Normalization: Dive into the concepts of normalization for efficient database design.
-- Indexing Strategies: Learn how to use indexing effectively for faster query performance.
-- Design for Scalability: Strategies for designing databases that scale with your application's growth.
+## 효율적인 데이터베이스 설계 원칙
 
+- 정규화 이해: 효율적인 데이터베이스 설계를 위한 정규화 개념 깊이 이해하기.
+- 인덱싱 전략: 빠른 쿼리 성능을 위해 인덱싱을 효과적으로 사용하는 방법 학습하기.
+- 확장성을 위한 설계: 애플리케이션 성장과 함께 확장할 수 있는 데이터베이스 설계 전략.
 
-## Security Measures and Data Safety
-- Implementing Encryption: Techniques for securing sensitive data in your database.
-- Data Backup and Recovery: Best practices for data backup and implementing robust recovery plans.
-- User Access Control: Managing user permissions and roles to ensure data integrity and security.
+## 보안 조치 및 데이터 안전
 
+- 암호화 구현: 데이터베이스 내 민감한 데이터를 보호하기 위한 암호화 기법.
+- 데이터 백업 및 복구: 데이터 백업에 대한 최고의 실천 방법 및 강력한 복구 계획 구현하기.
+- 사용자 접근 제어: 데이터 무결성 및 보안을 보장하기 위해 사용자 권한 및 역할 관리하기.
 
-## Performance Enhancement Techniques
-- Query Optimization: Advanced techniques for optimizing SQL queries for maximum efficiency.
-- Resource Management: Understanding and managing database resources for optimal performance.
-- Monitoring and Tuning: Tools and techniques for monitoring database performance and fine-tuning settings.
+## 성능 향상 기법
+
+- 쿼리 최적화: SQL 쿼리를 최대한 효율적으로 최적화하기 위한 고급 기법.
+- 자원 관리: 최적의 성능을 위해 데이터베이스 자원을 이해하고 관리하기.
+- 모니터링 및 조정: 데이터베이스 성능 모니터링 및 설정 조정을 위한 도구 및 기법.
