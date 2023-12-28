@@ -6,9 +6,9 @@
 
 ### 데이터베이스 구조
 
-Employees: 직원 정보 (EmployeeID, Name, Department, Salary, HireDate)
-Projects: 프로젝트 정보 (ProjectID, ProjectName, Department, Budget, StartDate, EndDate)
-EmployeeProjects: 직원과 프로젝트 간의 관계 (EmployeeID, ProjectID)
+- Employees: 직원 정보 (EmployeeID, Name, Department, Salary, HireDate)
+- Projects: 프로젝트 정보 (ProjectID, ProjectName, Department, Budget, StartDate, EndDate)
+- EmployeeProjects: 직원과 프로젝트 간의 관계 (EmployeeID, ProjectID)
 
 ### 퀴즈
 
