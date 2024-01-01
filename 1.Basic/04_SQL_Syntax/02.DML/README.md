@@ -1,40 +1,38 @@
 
-# DDL 및 기본 데이터 조작 사용 예시
+# DML (Data Manipulation Language) 상세 사용 예시 및 실습
 
-## DDL (Data Definition Language) 소개
+## DML 소개
 
-DDL은 데이터베이스의 구조를 정의하는 데 사용되는 SQL의 중요한 부분입니다. DDL 명령어로는 CREATE, ALTER, DROP 등이 있습니다.
+DML(Data Manipulation Language)은 데이터베이스 내의 데이터를 관리하고 조작하기 위한 SQL의 주요 부분입니다. DML 명령어는 데이터의 삽입, 조회, 업데이트, 삭제를 포함합니다.
 
-## 주요 DDL 명령어
+## 주요 DML 명령어
 
-- **CREATE**: 데이터베이스나 테이블 생성.
-  - 예: `CREATE TABLE students (id INT, name VARCHAR(100));`
-- **ALTER**: 기존 데이터베이스 구조 수정.
-  - 예: `ALTER TABLE students ADD COLUMN email VARCHAR(100);`
-- **DROP**: 데이터베이스나 테이블 삭제.
-  - 예: `DROP TABLE students;`
+- **INSERT**: 새로운 데이터를 테이블에 삽입합니다.
+- **SELECT**: 테이블에서 데이터를 조회합니다.
+- **UPDATE**: 테이블의 기존 데이터를 수정합니다.
+- **DELETE**: 테이블에서 데이터를 삭제합니다.
 
-## 기본 데이터 조작
+## 예시 쿼리 실습 및 분석
 
-### 데이터 삽입
+### 데이터 삽입 (INSERT)
 ```sql
 INSERT INTO Employees (EmployeeID, Name, Position, Salary)
-VALUES (1, 'John Doe', 'Manager', 75000.00);
+VALUES (1, 'Alice Smith', 'Developer', 70000.00);
 ```
 
-### 데이터 조회
+### 데이터 조회 (SELECT)
 ```sql
 SELECT * FROM Employees;
 ```
 
-### 데이터 업데이트
+### 데이터 업데이트 (UPDATE)
 ```sql
 UPDATE Employees
-SET Salary = 80000.00
+SET Salary = 75000.00
 WHERE EmployeeID = 1;
 ```
 
-### 데이터 삭제
+### 데이터 삭제 (DELETE)
 ```sql
 DELETE FROM Employees
 WHERE EmployeeID = 1;
@@ -42,10 +40,10 @@ WHERE EmployeeID = 1;
 
 ## 쿼리 진행 순서
 
-1. **데이터 삽입**: `Employees` 테이블에 새로운 직원 데이터를 삽입합니다.
+1. **데이터 삽입**: `Employees` 테이블에 새로운 데이터를 추가합니다.
 2. **데이터 조회**: `Employees` 테이블의 모든 데이터를 조회합니다.
-3. **데이터 업데이트**: 특정 직원의 급여 정보를 업데이트합니다.
-4. **데이터 삭제**: 특정 직원의 레코드를 삭제합니다.
+3. **데이터 업데이트**: 특정 직원의 급여를 업데이트합니다.
+4. **데이터 삭제**: 특정 직원의 데이터를 삭제합니다.
 
 ## 쿼리 진행도 (Mermaid)
 
@@ -57,4 +55,4 @@ graph LR
     D --> E[결과: 데이터 조작 완료]
 ```
 
-이 예시를 통해 DDL 명령어와 기본 데이터 조작 과정을 이해할 수 있습니다.
+이 실습 예제를 통해 DML 명령어를 사용하여 데이터를 조작하는 기본 방법을 이해할 수 있습니다.
