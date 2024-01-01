@@ -1,18 +1,38 @@
-# 기본 쿼리 (Basic Queries)
 
-기본 쿼리는 데이터를 조회하는 데 사용되는 가장 기본적인 SQL 명령어들로 구성됩니다.
+# 기본 쿼리 (Basic Queries) 상세 사용 예시 및 실습
 
-## SELECT
+## 기본 쿼리 소개
 
-- 데이터를 조회합니다.
-- 예: `SELECT * FROM table_name;`
+기본 쿼리는 데이터를 조회하는 데 사용되는 가장 기본적인 SQL 명령어들로 구성됩니다. 이 명령어들은 데이터베이스에서 특정 데이터를 선택하고 필터링하는 데 사용됩니다.
 
-## FROM
+### 주요 기본 쿼리 명령어
 
-- 조회할 데이터가 있는 테이블을 지정합니다.
-- 예: `SELECT column_name FROM table_name;`
+- **SELECT**: 데이터를 조회합니다.
+- **FROM**: 조회할 데이터가 있는 테이블을 지정합니다.
+- **WHERE**: 특정 조건에 맞는 데이터를 조회합니다.
 
-## WHERE
+## 예시 쿼리 실습 및 분석
 
-- 특정 조건에 맞는 데이터를 조회합니다.
-- 예: `SELECT * FROM table_name WHERE condition;`
+### 기본 쿼리 예제
+```sql
+SELECT * FROM Employees;
+SELECT Name, Salary FROM Employees;
+SELECT * FROM Employees WHERE Salary > 60000;
+```
+
+## 쿼리 진행 순서
+
+1. **전체 데이터 조회**: `Employees` 테이블의 모든 데이터를 조회합니다.
+2. **특정 컬럼 조회**: `Employees` 테이블에서 `Name`과 `Salary` 컬럼만 조회합니다.
+3. **조건에 맞는 데이터 조회**: `Salary`가 60000 이상인 직원만 조회합니다.
+
+## 쿼리 진행도 (Mermaid)
+
+```mermaid
+graph LR
+    A[전체 데이터 조회] --> B[특정 컬럼 조회]
+    B --> C[조건에 맞는 데이터 조회]
+    C --> D[결과: 필터링된 데이터]
+```
+
+이 실습 예제를 통해 기본 쿼리 명령어를 사용하여 데이터를 조회하는 방법을 이해할 수 있습니다.
