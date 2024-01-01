@@ -7,55 +7,47 @@
 
 ## 학습 목표
 
-- **CTE의 개념 이해**: CTE가 쿼리의 가독성과 구조를 개선하는 방법을 이해합니다.
-- **CTE 작성 및 통합**: CTE를 SQL 쿼리에 작성하고 효과적으로 통합하는 방법을 배웁니다.
-- **재귀적 CTE 탐구**: 계층적 데이터 처리를 위한 재귀적 CTE 사용법을 학습합니다.
+### CTE의 개념 이해
+- CTE는 임시 결과 집합을 정의하고, 이를 쿼리 내에서 하나 이상의 번 사용할 수 있게 합니다.
+- 이를 통해 쿼리의 가독성과 구조를 개선하며, 복잡한 쿼리를 더 이해하기 쉽게 만들 수 있습니다.
+
+### CTE 작성 및 통합
+- CTE는 `WITH` 절을 사용하여 정의되며, 쿼리의 시작 부분에 위치합니다.
+- CTE를 활용하면 복잡한 로직을 단계별로 분리하여 쿼리의 명확성을 높일 수 있습니다.
+
+### 재귀적 CTE 탐구
+- 재귀적 CTE는 계층적 데이터 구조(예: 조직도, 카테고리 계층)를 쿼리하는 데 사용됩니다.
+- 재귀적 CTE는 자기 자신을 참조하는 특별한 형태의 CTE입니다.
 
 ## 예시 쿼리 분석
 
-### 예제 데이터 생성 및 삽입
-
+### 예제 1: 재귀적 CTE를 사용한 조직도 쿼리
 ```sql
-CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY,
-    Name NVARCHAR(50),
-    ManagerID INT
-);
-
-INSERT INTO Employees (EmployeeID, Name, ManagerID)
-VALUES 
-(1, 'John Doe', NULL),
-(2, 'Jane Smith', 1),
-(3, 'Alice Johnson', 1),
-(4, 'Bob Brown', 2);
-```
-
-### 기본 CTE 예제
-
-```sql
-WITH ManagerCTE AS (
-    SELECT EmployeeID, Name
+WITH RECURSIVE OrgChart AS (
+    SELECT EmployeeID, Name, ManagerID
     FROM Employees
     WHERE ManagerID IS NULL
+    UNION ALL
+    SELECT e.EmployeeID, e.Name, e.ManagerID
+    FROM Employees e
+    INNER JOIN OrgChart o ON e.ManagerID = o.EmployeeID
 )
-SELECT E.Name, M.Name AS Manager
-FROM Employees E
-JOIN ManagerCTE M ON E.ManagerID = M.EmployeeID;
+SELECT * FROM OrgChart;
 ```
 
 ## 쿼리 진행 순서
 
-1. **테이블 생성 및 데이터 삽입**: `Employees` 테이블을 생성하고 임시 데이터를 삽입합니다.
-2. **CTE 정의**: 관리자를 나타내는 `ManagerCTE`를 정의합니다.
-3. **CTE와 조인**: `Employees` 테이블과 `ManagerCTE`를 조인하여 각 직원의 관리자를 조회합니다.
+1. **CTE 정의**: `OrgChart`라는 이름의 재귀적 CTE를 정의합니다.
+2. **재귀적 쿼리 실행**: CTE 내에서 자기 자신을 참조하여 계층적 데이터를 쿼리합니다.
+3. **결과 조회**: 최종적으로 계층적으로 구성된 조직도 데이터를 조회합니다.
 
 ## 쿼리 진행도 (Mermaid)
 
 ```mermaid
 graph LR
-    A[테이블 생성 및 데이터 삽입] --> B[CTE 정의]
-    B --> C[CTE와 조인]
-    C --> D[최종 결과: 직원과 관리자]
+    A[CTE 정의: OrgChart] --> B[재귀적 쿼리 실행]
+    B --> C[결과 조회]
+    C --> D[조직도 데이터]
 ```
 
-CTE를 사용하면 복잡한 쿼리를 명확하고 구조화된 방식으로 작성할 수 있습니다, 더 나은 가독성과 유지보수성을 제공합니다.
+이러한 CTE의 사용은 복잡한 데이터베이스 쿼리를 구조화하고 가독성을 높이는 데 매우 효과적입니다.
