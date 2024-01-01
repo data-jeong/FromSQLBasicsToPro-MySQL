@@ -36,7 +36,7 @@ GROUP BY
 
 ```mermaid
 graph LR
-    A[Sales 테이블] -->|데이터 선택| B[Product, SUM(Amount) AS TotalSales]
+    A[Sales 테이블] -->|데이터 선택| B[Product, TotalSales]
     B -->|그룹화: GROUP BY Product| C[각 제품별 총 판매량]
     C --> D[최종 결과: 제품별 총 판매량]
 ```
