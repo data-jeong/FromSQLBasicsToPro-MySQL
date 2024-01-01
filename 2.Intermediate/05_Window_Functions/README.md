@@ -31,7 +31,7 @@ graph LR
 ```
 
 
-### PARTITION BY
+### 2. PARTITION BY
 - PARTITION BY 절은 데이터를 특정 컬럼의 값에 따라 여러 파티션으로 나눕니다.
 - 예제 쿼리: 
   ```sql
@@ -54,7 +54,7 @@ graph LR
     B -->|결과 표시| C[최종 결과: TotalSalesByDept]
 ```
 
-### ROW_NUMBER, RANK, DENSE_RANK
+### 3. ROW_NUMBER, RANK, DENSE_RANK
 - `ROW_NUMBER()`: 각 파티션 내에서 고유한 순서를 할당합니다.
 - `RANK()`: 동일한 값을 가진 항목에 동일 순위를 부여하고, 다음 순위는 건너뜁니다.
 - `DENSE_RANK()`: 동일한 값을 가진 항목에 동일 순위를 부여하지만, 순위를 건너뛰지 않습니다.
@@ -83,7 +83,7 @@ graph LR
 ```
 
 
-### LEAD, LAG
+### 4. LEAD, LAG
 - `LEAD()`: 현재 행으로부터 지정된 수만큼 이후의 행을 참조합니다.
 - `LAG()`: 현재 행으로부터 지정된 수만큼 이전의 행을 참조합니다.
 - 예제 쿼리: 
