@@ -13,7 +13,7 @@
   ```sql
   SELECT 
       EmployeeID, 
-      SaleAmount,
+      SaleDate,
       AVG(SaleAmount) OVER (ORDER BY SaleDate ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS MovingAvg
   FROM 
       Sales;```
