@@ -40,3 +40,4 @@ graph LR
     B -->|그룹화: GROUP BY Product| C[각 제품별 총 판매량]
     C --> D[최종 결과: 제품별 총 판매량]
 ```
+
