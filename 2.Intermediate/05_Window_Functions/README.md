@@ -1,34 +1,44 @@
 
-# 윈도우 함수 (Window Functions) 사용 예시
+# 윈도우 함수 (Window Functions) 상세 사용 예시
 
 ## 윈도우 함수란?
 
-윈도우 함수는 데이터 분석에서 매우 유용한 SQL 기능으로, 특정 범위(윈도우) 내에서 데이터를 그룹화하고 각 그룹에 대한 계산을 수행합니다. 이러한 함수는 복잡한 데이터 분석을 위해 필수적입니다.
+윈도우 함수는 데이터를 특정 범위(윈도우) 내에서 그룹화하고 각 그룹에 대한 계산을 수행하는 SQL의 고급 기능입니다. 이러한 함수들은 복잡한 데이터 분석에 필수적입니다.
 
-## 학습 내용
+## 핵심 구성요소 및 작동 방식
 
-- **OVER**: 파티션별 데이터 연산을 위한 윈도우 지정.
-- **PARTITION BY**: 특정 컬럼을 기준으로 데이터 파티션 나눔.
-- **ROW_NUMBER, RANK, DENSE_RANK**: 각 파티션 내에서 순서나 순위 부여.
-- **LEAD, LAG**: 다음 행이나 이전 행의 데이터에 접근.
+### OVER
+- OVER 절은 파티션별 데이터 연산을 위한 윈도우를 지정합니다. 이 절은 윈도우 함수가 적용될 데이터 범위를 정의합니다.
 
-## 예시 쿼리
+### PARTITION BY
+- PARTITION BY 절은 데이터를 특정 컬럼을 기준으로 파티션으로 나눕니다. 같은 파티션 내의 데이터에 대해서만 함수가 적용됩니다.
 
 ### ROW_NUMBER, RANK, DENSE_RANK
+- `ROW_NUMBER()`: 각 파티션 내에서 고유한 순서를 할당합니다.
+- `RANK()`: 동일한 값을 가진 항목에 동일 순위를 부여하고, 다음 순위는 건너뜁니다.
+- `DENSE_RANK()`: 동일한 값을 가진 항목에 동일 순위를 부여하지만, 순위를 건너뛰지 않습니다.
+
+### LEAD, LAG
+- `LEAD()`: 현재 행으로부터 지정된 수만큼 이후의 행을 참조합니다.
+- `LAG()`: 현재 행으로부터 지정된 수만큼 이전의 행을 참조합니다.
+
+## 예시 쿼리 분석
+
+### ROW_NUMBER, RANK, DENSE_RANK 사용 예
 
 ```sql
 SELECT 
     EmployeeID,
     Department,
     SaleAmount,
-    ROW_NUMBER() OVER (PARTITION BY Department ORDER BY SaleAmount) AS RowNum,
-    RANK() OVER (PARTITION BY Department ORDER BY SaleAmount) AS Rank,
-    DENSE_RANK() OVER (PARTITION BY Department ORDER BY SaleAmount) AS DenseRank
+    ROW_NUMBER() OVER (PARTITION BY Department ORDER BY SaleAmount DESC) AS RowNum,
+    RANK() OVER (PARTITION BY Department ORDER BY SaleAmount DESC) AS Rank,
+    DENSE_RANK() OVER (PARTITION BY Department ORDER BY SaleAmount DESC) AS DenseRank
 FROM 
     Sales;
 ```
 
-### LEAD, LAG
+### LEAD, LAG 사용 예
 
 ```sql
 SELECT 
@@ -41,19 +51,14 @@ FROM
     Sales;
 ```
 
-## 쿼리 진행 순서
-
-1. `FROM Sales`: `Sales` 테이블에서 데이터를 선택합니다.
-2. `SELECT EmployeeID, Department, SaleAmount, ROW_NUMBER(), RANK(), DENSE_RANK()`: `ROW_NUMBER`, `RANK`, `DENSE_RANK`를 사용하여 각 부서별로 판매량 순서 및 순위를 부여합니다.
-3. `SELECT EmployeeID, Department, SaleAmount, LEAD(), LAG()`: `LEAD`, `LAG`를 사용하여 각 부서별로 다음 또는 이전 판매량을 보여줍니다.
-4. 결과 반환: 계산된 결과를 포함하여 반환합니다.
-
 ## 쿼리 진행도 (Mermaid)
 
 ```mermaid
 graph LR
-    A[Sales 테이블] -->|데이터 선택| B[ROW_NUMBER, RANK, DENSE_RANK 적용]
-    A -->|LEAD, LAG 적용| C[다음 또는 이전 판매량 계산]
-    B --> D[최종 결과: 순서 및 순위 부여]
-    C --> E[최종 결과: 이전 및 다음 판매량]
+    A[Sales 테이블] -->|데이터 선택 및 파티션| B[ROW_NUMBER, RANK, DENSE_RANK]
+    A -->|LEAD, LAG 적용| C[다음/이전 판매량 계산]
+    B -->|순위 부여| D[최종 결과: 순위 데이터]
+    C -->|이전/다음 데이터 참조| E[최종 결과: 이전/다음 판매 데이터]
 ```
+
+이러한 과정을 통해 복잡한 데이터 분석과 패턴 인식이 가능해집니다.
