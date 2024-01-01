@@ -40,7 +40,7 @@ HAVING
 ```mermaid
 graph LR
     A[Sales 테이블] -->|데이터 선택| B[Product 그룹화]
-    B -->|SUM(Amount) 계산| C[TotalSales]
+    B -->|TotalSales 계산| C[TotalSales]
     C -->|HAVING 조건 적용| D[총 판매량 > 1000인 제품]
     D --> E[최종 결과: 조건 만족하는 제품의 판매량]
 ```
